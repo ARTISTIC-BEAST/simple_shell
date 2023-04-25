@@ -25,7 +25,7 @@ int run_command(char *cmd)
 	}
 	else if (pid == 0)
 	{
-		if (execve(args[0], args, environ) == -1)
+		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("execve");
 			free(args);

@@ -10,45 +10,40 @@
 
 int main(void)
 {
-	char *args[BUFSIZE / 2 + 1];
 	char *line = NULL;
-	size_t bufsize = 0;
-	ssize_t nread;
-	pid_t pid;
-	int status;
+	size_t len = 0;
+	ssize_t read_line;
+	const char *delim = " \n";
+	char **args; /*holds cmd and NULL*/
 
-	while (1)
+	if (isatty(STDIN_FILENO))
 	{
-		printf("#cisfun$ ");
-		nread = getline(&line, &bufsize, stdin);
-		if (nread == -1)
-			break;
-		if (line[nread - 1] == '\n')
-			line[nread - 1] = '\0';
-
-		char *token = strtok(line, " ");
-		int i = 0;
-		while (token != NULL)
+		while (1)
 		{
-			args[i] = token;
-			token = strtok(NULL, " ");
-			i++;
+			printf("#cisfun$ ");
+			read_line = getline(&line, &len, stdin);
+			if (read_line == -1)
+			{
+				/*EOF*/
+				printf("\n");
+				exit(0);
+			}
+			/*replace newline with NULL terminator*/
+			line[read_line - 1] = '\0';
+			/*set command and NULL in args array*/
+			args = split_string(line, delim);
+			exec_cmd(args); /*execute command*/
 		}
-		args[i] = NULL;
-
-		pid = fork();
-
-		if (pid == 0)
-		{
-			if (execve(args[0], args, NULL) == -1)
-				perror("Error");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid < 0)
-			perror("Error");
-		else
-			wait(&status);
 	}
-	free(line);
-	exit(EXIT_SUCCESS);
+	else
+	{
+		while (getline(&line, &len, stdin) != -1)
+		{
+			/*remove newline character*/
+			line[strlen(line) - 1] = '\0';
+			system(line);
+		}
+	}
+	free(line); /*free mem automatically allocated by getline*/
+	return(0);
 }
