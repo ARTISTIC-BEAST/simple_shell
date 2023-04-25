@@ -7,10 +7,11 @@
  */
 int env_builtin(void)
 {
-        int i;
+	int i;
 
-        for (i = 0; environ[i]; i++)
-                printf("%s\n", environ[i]);
-
-        return (0);
+	for (i = 0; environ[i]; i++)
+	{
+		printf("%s\n", environ[i]);
+	}
+	return (0);
 }
