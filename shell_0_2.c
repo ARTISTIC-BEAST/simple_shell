@@ -1,8 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <string.h>
+#include "shell.h"
+
+/**
+ * main - Entry point
+ * Description: tests program
+ * Return: 0
+ */
 
 #define BUFSIZE 1024
 

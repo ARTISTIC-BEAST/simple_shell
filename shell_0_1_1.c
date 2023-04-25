@@ -6,13 +6,13 @@
  */
 char *_getline(void)
 {
-	static char *line = NULL;
-	static size_t len = 0;
+	char *line = NULL;
+	size_t len = 0;
 	size_t i = 0;
 	int c;
 
-	if (!line)
-		line = malloc(READ_SIZE);
+	line = malloc(READ_SIZE);
+
 	if (!line)
 		return (NULL);
 

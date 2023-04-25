@@ -37,4 +37,11 @@ void process_command(char *command);
 int env_builtin(void);
 int cd_builtin(char **args, char **env, status_t *status);
 int execute(char **args, char **env);
+int setenv_builtin(char **args);
+int unsetenv_builtin(char **args);
+char *_getline(void);
+int run_command(char *cmd);
+void exec_cmd(char **args);
+
+
 #endif

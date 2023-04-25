@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#include "shell.h"
 
 /**
  * setenv_builtin - sets the value of an environment variable
@@ -11,15 +8,15 @@
  */
 int setenv_builtin(char **args)
 {
-    if (args[1] == NULL)
-    {
-        fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
-    }
-    else
-    {
-        setenv(args[1], args[2] != NULL ? args[2] : "", 1);
-    }
-    return (1);
+	if (args[1] == NULL)
+	{
+		fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
+	}
+	else
+	{
+		setenv(args[1], args[2] != NULL ? args[2] : "", 1);
+	}
+	return (1);
 }
 
 /**
@@ -30,13 +27,13 @@ int setenv_builtin(char **args)
  */
 int unsetenv_builtin(char **args)
 {
-    if (args[1] == NULL)
-    {
-        fprintf(stderr, "Usage: unsetenv VARIABLE\n");
-    }
-    else
-    {
-        unsetenv(args[1]);
-    }
-    return (1);
+	if (args[1] == NULL)
+	{
+		fprintf(stderr, "Usage: unsetenv VARIABLE\n");
+	}
+	else
+	{
+		unsetenv(args[1]);
+	}
+	return (1);
 }
