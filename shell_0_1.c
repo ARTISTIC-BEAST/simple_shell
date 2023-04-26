@@ -9,9 +9,10 @@
 int main(void)
 {
 	char *line = NULL;
+	char *delim = " ";
 	size_t len = 0;
 	ssize_t read_line;
-	char *args[2]; /*holds cmd and NULL*/
+	char **args; /*holds cmd and NULL*/
 
 	if (isatty(STDIN_FILENO))
 	{

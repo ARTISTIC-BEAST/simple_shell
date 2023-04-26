@@ -69,6 +69,9 @@ char **split_line(char *line)
  */
 int shell_execute(char **args)
 {
+	pid_t pid, wpid;
+	int status;
+
 	if (args[0] == NULL)
 	{
 		return (1);
@@ -77,9 +80,6 @@ int shell_execute(char **args)
 	{
 		return (shell_exit(args));
 	}
-	pid_t pid, wpid;
-	int status;
-
 	pid = fork();
 	if (pid == 0)
 	{

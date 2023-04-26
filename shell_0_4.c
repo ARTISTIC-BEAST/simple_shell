@@ -41,14 +41,18 @@ int main(int ac, char **av, char **env)
 		if (!args || !*args || _strcmp(*args, "exit") == 0)
 			break;
 		if (_strcmp(*args, "env") == 0)
+		{
 			status = _env(args, env);
+		}
 		else
+		{
 			status = _execute(args, env, &path);
 			if (status == -1 && path)
 			{
 				_puts_err(av[0]), _puts_err(": "), _puts_err(args[0]),
 				_puts_err(": not found\n"), status = 127;
 			}
+		}
 		if (status != -2 && path)
 			free(path);
 		free(line), free(args);

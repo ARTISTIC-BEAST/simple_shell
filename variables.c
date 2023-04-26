@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * main - entry point
  * Description: tests program
@@ -13,6 +13,7 @@ int main(void)
 	char cmd[MAX_CMD_LEN];
 	char *var_ref, *args[MAX_ARGS];
 	int status, i;
+	pid_t pid;
 
 	while (1)
 	{
@@ -48,7 +49,7 @@ int main(void)
 			}
 		}
 		/* Execute the command*/
-		pid_t pid = fork();
+		pid = fork();
 
 		if (pid == -1)
 		{
