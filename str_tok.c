@@ -7,7 +7,7 @@
 */
 char *_strtok(char *line, char *delim)
 {
-	int j;
+	int k;
 	static char *str;
 	char *copystr;
 
@@ -15,12 +15,12 @@ char *_strtok(char *line, char *delim)
 		str = line;
 	for (; *str != '\0'; str++)
 	{
-		for (j = 0; delim[j] != '\0'; j++)
+		for (k = 0; delim[k] != '\0'; k++)
 		{
-			if (*str == delim[j])
+			if (*str == delim[k])
 			break;
 		}
-		if (delim[j] == '\0')
+		if (delim[k] == '\0')
 			break;
 	}
 	copystr = str;
@@ -28,9 +28,9 @@ char *_strtok(char *line, char *delim)
 		return (NULL);
 	for (; *str != '\0'; str++)
 	{
-		for (j = 0; delim[j] != '\0'; j++)
+		for (k = 0; delim[k] != '\0'; k++)
 		{
-			if (*str == delim[j])
+			if (*str == delim[k])
 			{
 				*str = '\0';
 				str++;
