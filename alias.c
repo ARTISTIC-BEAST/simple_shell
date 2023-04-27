@@ -8,26 +8,26 @@
  */
 int print_alias(data_of_program *data, char *alias)
 {
-	int i, j, alias_length;
+	int j, k, alias_length;
 	char buffer[250] = {'\0'};
 
 	if (data->alias_list)
 	{
 		alias_length = str_length(alias);
-		for (i = 0; data->alias_list[i]; i++)
+		for (j = 0; data->alias_list[j]; j++)
 		{
-			if (!alias || (str_compare(data->alias_list[i], alias, alias_length)
-				&&	data->alias_list[i][alias_length] == '='))
+			if (!alias || (str_compare(data->alias_list[j], alias, alias_length)
+				&&	data->alias_list[j][alias_length] == '='))
 			{
-				for (j = 0; data->alias_list[i][j]; j++)
+				for (k = 0; data->alias_list[j][k]; k++)
 				{
-					buffer[j] = data->alias_list[i][j];
-					if (data->alias_list[i][j] == '=')
+					buffer[k] = data->alias_list[j][k];
+					if (data->alias_list[j][k] == '=')
 						break;
 				}
-				buffer[j + 1] = '\0';
+				buffer[k + 1] = '\0';
 				buffer_add(buffer, "'");
-				buffer_add(buffer, data->alias_list[i] + j + 1);
+				buffer_add(buffer, data->alias_list[j] + k + 1);
 				buffer_add(buffer, "'\n");
 				_print(buffer);
 			}
